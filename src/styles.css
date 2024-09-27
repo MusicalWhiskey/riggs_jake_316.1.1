@@ -15,7 +15,7 @@
     margin: 0;
     display: grid;
     grid-template-rows: 3rem auto;
-    color: white;
+    color: rgb(255, 255, 255);
   }
   
   .flex-ctr {
@@ -42,13 +42,4 @@
     background-color: var(--sub-menu-bg);
   }
   
-  :root {
-    --main-bg: #f0f0f0;
-    --main-bg-color: light green;
 
-}
-  
-.mainEl {
-    color: blue
-}
-  

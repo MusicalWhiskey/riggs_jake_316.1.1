@@ -54,6 +54,7 @@ const subMenuEl = document.getElementById( id="sub-menu");
 subMenuEl.style.height = "100%";
 
 const customBgColor = getComputedStyle(document.documentElement).getPropertyValue('--sub-menu-bg');
+
 subMenuEl.style.backgroundColor = customBgColor;
 
 subMenuEl.classList.add('flex-around');
@@ -91,12 +92,23 @@ topMenuEl.addEventListener('click', function(event) {
 
     if (linkObject) {
       if (linkObject.subLinks) {
-        // Show the submenu
+        // Clear existing sublinks
+        subMenuEl.innerHTML = '';
+
+        // Create and append sublinks
+        linkObject.subLinks.forEach(subLink => {
+          const subLinkElement = document.createElement('a');
+          subLinkElement.setAttribute('href', subLink.href);
+          subLinkElement.textContent = subLink.text;
+          subMenuEl.appendChild(subLinkElement);
+        });
+
         subMenuEl.style.top = '100%';
       } else {
         // Hide the submenu
         subMenuEl.style.top = '0';
       }
+
 
       // Toggle the "active" class for the clicked link
       const allLinks = topMenuEl.querySelectorAll('a');
@@ -106,6 +118,6 @@ topMenuEl.addEventListener('click', function(event) {
   }
 });
 
-//**Can't get submenu links attached */
+//**Can't get submenu links to change through array */
 //====================================================
 

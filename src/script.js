@@ -44,7 +44,9 @@ menuLinks.forEach(function(link) {
   
   linkElement.textContent = link.text;
   
-  topMenuEl.appendChild(linkElement);
+  topMenuEl.appendChild(linkElement)
+  
+  // subMenuEl.appendChild(linkElement);
 });
 
 const subMenuEl = document.getElementById( id="sub-menu");
@@ -76,9 +78,13 @@ topMenuEl.addEventListener('click', function(event) {
 topMenuEl.addEventListener('click', function(event) {
   event.preventDefault();
 
+
   if (event.target.tagName === 'A') {
     const clickedLink = event.target;
     const linkHref = clickedLink.getAttribute('href');
+
+    //console log clicked link
+    console.log(`Clicked link: ${clickedLink.textContent}`);
 
     // Find the corresponding link object in menuLinks
     const linkObject = menuLinks.find(link => link.href === linkHref);
@@ -102,3 +108,4 @@ topMenuEl.addEventListener('click', function(event) {
 
 //**Can't get submenu links attached */
 //====================================================
+

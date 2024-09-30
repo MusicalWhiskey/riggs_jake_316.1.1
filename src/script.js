@@ -64,7 +64,27 @@ topMenuEl.addEventListener('click', function(event) {
   event.preventDefault();
 
   if (event.target.tagName === 'A') {
-    // Log the content of the clicked <a> element
     console.log(event.target.textContent);
 }
 });
+
+topMenuEl.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  if (event.target.tagName === 'A') {
+    const clickedLink = event.target;
+
+    // Toggle the "active" class
+    if (clickedLink.classList.contains('active')) {
+      clickedLink.classList.remove('active');
+    } else {
+      // Remove "active" class from other links
+      const allLinks = topMenuEl.querySelectorAll('a');
+      allLinks.forEach(link => link.classList.remove('active'));
+
+      clickedLink.classList.add('active');
+    }
+  }
+});
+const allLinks = topMenuEl.querySelectorAll('a');
+allLinks.forEach(link => link.classList.remove('active'));

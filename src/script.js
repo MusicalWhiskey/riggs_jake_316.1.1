@@ -20,10 +20,21 @@ topMenuEl.style.backgroundColor = getComputedStyle(document.documentElement).get
 topMenuEl.classList.add('flex-around');
 
 const menuLinks = [
-  { text: 'about', href: '/about' },
-  { text: 'catalog', href: '/catalog' },
-  { text: 'orders', href: '/orders' },
-  { text: 'account', href: '/account' },
+  {text: 'about', href: '/about'},
+  {text: 'catalog', href: '#', subLinks: [
+    {text: 'all', href: '/catalog/all'},
+    {text: 'top selling', href: '/catalog/top'},
+    {text: 'search', href: '/catalog/search'},
+  ]},
+  {text: 'orders', href: '#' , subLinks: [
+    {text: 'new', href: '/orders/new'},
+    {text: 'pending', href: '/orders/pending'},
+    {text: 'history', href: '/orders/history'},
+  ]},
+  {text: 'account', href: '#', subLinks: [
+    {text: 'profile', href: '/account/profile'},
+    {text: 'sign out', href: '/account/signout'},
+  ]},
 ];
 
 menuLinks.forEach(function(link) {
@@ -34,4 +45,26 @@ menuLinks.forEach(function(link) {
   linkElement.textContent = link.text;
   
   topMenuEl.appendChild(linkElement);
+});
+
+const subMenuEl = document.getElementById( id="sub-menu");
+
+subMenuEl.style.height = "100%";
+
+const customBgColor = getComputedStyle(document.documentElement).getPropertyValue('--sub-menu-bg');
+subMenuEl.style.backgroundColor = customBgColor;
+
+subMenuEl.classList.add('flex-around');
+
+subMenuEl.style.position = 'absolute';
+
+subMenuEl.style.top = '0';
+
+topMenuEl.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  if (event.target.tagName === 'A') {
+    // Log the content of the clicked <a> element
+    console.log(event.target.textContent);
+}
 });

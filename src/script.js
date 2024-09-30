@@ -64,26 +64,41 @@ topMenuEl.addEventListener('click', function(event) {
   event.preventDefault();
 
   if (event.target.tagName === 'A') {
-    console.log(event.target.textContent);
-}
+    const allLinks = topMenuEl.querySelectorAll('a');
+    allLinks.forEach(link => link.classList.remove('active'));
+
+    event.target.classList.toggle('active');
+  }
 });
+
+//=================================================
 
 topMenuEl.addEventListener('click', function(event) {
   event.preventDefault();
 
   if (event.target.tagName === 'A') {
     const clickedLink = event.target;
+    const linkHref = clickedLink.getAttribute('href');
 
-    if (clickedLink.classList.contains('active')) {
-      clickedLink.classList.remove('active');
-    } else {
+    // Find the corresponding link object in menuLinks
+    const linkObject = menuLinks.find(link => link.href === linkHref);
+
+    if (linkObject) {
+      if (linkObject.subLinks) {
+        // Show the submenu
+        subMenuEl.style.top = '100%';
+      } else {
+        // Hide the submenu
+        subMenuEl.style.top = '0';
+      }
+
+      // Toggle the "active" class for the clicked link
       const allLinks = topMenuEl.querySelectorAll('a');
       allLinks.forEach(link => link.classList.remove('active'));
-
-      clickedLink.classList.add('active');
+      clickedLink.classList.toggle('active');
     }
   }
 });
-const allLinks = topMenuEl.querySelectorAll('a');
-allLinks.forEach(link => link.classList.remove('active'));
 
+//**Can't get submenu links attached */
+//====================================================
